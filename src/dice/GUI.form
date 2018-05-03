@@ -86,16 +86,18 @@
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jRollTypeComboBox" pref="107" max="32767" attributes="0"/>
+                  <Component id="jRollTypeComboBox" pref="93" max="32767" attributes="0"/>
                   <Component id="jRollTypeLabel" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jRollButton" min="-2" pref="226" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jRollButton" pref="221" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jResultTitleLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="jResultLabel" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="jSumLabel" min="-2" pref="63" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -117,8 +119,9 @@
                   <Component id="jDieTypeLabel" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
                   <Component id="jDieAmountLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jResultTitleLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jResultLabel" alignment="3" max="32767" attributes="0"/>
+                  <Component id="jResultLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jRollTypeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jSumLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
@@ -194,6 +197,11 @@
             <LineBorder/>
           </Border>
         </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jSumLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value=" "/>
       </Properties>
     </Component>
   </SubComponents>

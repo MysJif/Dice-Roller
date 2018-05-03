@@ -136,4 +136,24 @@ public class DiceRoller
         }
         return result3;
     }
+    
+    public int sumResultsOne(int[] result)
+    {
+        int sum = 0;
+        for(int x = 0; x <= result.length-1; x++)
+        {
+            sum += result[x];
+        }
+        return sum;
+    }
+    
+    public int sumResultsTwo(int[][] result)
+    {
+        int sum = 0;
+        for(int x = 0; x <= result.length-1; x++)
+        {
+            sum += sumResultsOne(result[x]);
+        }
+        return sum;
+    }
 }

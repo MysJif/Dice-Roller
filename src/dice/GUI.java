@@ -47,6 +47,7 @@ public class GUI extends javax.swing.JFrame
         jRollTypeLabel = new javax.swing.JLabel();
         jResultTitleLabel = new javax.swing.JLabel();
         jResultLabel = new javax.swing.JLabel();
+        jSumLabel = new javax.swing.JLabel();
 
         jMenu1.setText("jMenu1");
 
@@ -113,6 +114,8 @@ public class GUI extends javax.swing.JFrame
         jResultLabel.setToolTipText("Roll Result");
         jResultLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jSumLabel.setText(" ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -128,15 +131,17 @@ public class GUI extends javax.swing.JFrame
                     .addComponent(jDieAmountLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRollTypeComboBox, 0, 107, Short.MAX_VALUE)
+                    .addComponent(jRollTypeComboBox, 0, 93, Short.MAX_VALUE)
                     .addComponent(jRollTypeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jRollButton, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jRollButton, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jResultTitleLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jResultLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jResultLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSumLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -153,8 +158,9 @@ public class GUI extends javax.swing.JFrame
                     .addComponent(jDieTypeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jDieAmountLabel)
                     .addComponent(jResultTitleLabel)
-                    .addComponent(jResultLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jRollTypeLabel))
+                    .addComponent(jResultLabel)
+                    .addComponent(jRollTypeLabel)
+                    .addComponent(jSumLabel))
                 .addContainerGap())
         );
 
@@ -163,53 +169,68 @@ public class GUI extends javax.swing.JFrame
 
     private void jRollButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jRollButtonActionPerformed
     {//GEN-HEADEREND:event_jRollButtonActionPerformed
-        // if statement depending on combobox text to get method
         if(jRollTypeComboBox.getSelectedItem().toString().equals("Default"))
         {
             if(Integer.parseInt(jDieAmountTextField.getText()) == 1)
             {
-                jResultLabel.setText(Integer.toString(roll.rollDie(Integer.parseInt(jDieTypeTextField.getText()))));
+                int sumD = roll.rollDie(Integer.parseInt(jDieTypeTextField.getText()));
+                jResultLabel.setText(Integer.toString(sumD));
+                jSumLabel.setText("= " + Integer.toString(sumD));
             }
             else
             {
-            jResultLabel.setText(Arrays.toString(roll.rollDice(Integer.parseInt(jDieTypeTextField.getText()), Integer.parseInt(jDieAmountTextField.getText()))));
+                int [] sumDA = roll.rollDice(Integer.parseInt(jDieTypeTextField.getText()), Integer.parseInt(jDieAmountTextField.getText()));
+                jResultLabel.setText(Arrays.toString(sumDA));
+                jSumLabel.setText("= " + Integer.toString(roll.sumResultsOne(sumDA)));
             }
         }
         else if(jRollTypeComboBox.getSelectedItem().toString().equals("Exploding"))
         {
             if(Integer.parseInt(jDieTypeTextField.getText()) == 1)
             {
-                jResultLabel.setText("1");
+                jResultLabel.setText("One-sided coin");
             }
             else if(Integer.parseInt(jDieAmountTextField.getText()) > 1)
             {
-                jResultLabel.setText(roll.ExplodeDiceString(roll.rollExplodeDice(Integer.parseInt(jDieTypeTextField.getText()), Integer.parseInt(jDieAmountTextField.getText()))));
+                int[][] sumE = roll.rollExplodeDice(Integer.parseInt(jDieTypeTextField.getText()), Integer.parseInt(jDieAmountTextField.getText()));
+                jResultLabel.setText(roll.ExplodeDiceString(sumE));
+                jSumLabel.setText("= " + Integer.toString(roll.sumResultsTwo(sumE)));
             }
             else
             {
-            jResultLabel.setText(Arrays.toString(roll.rollExplodeDie(Integer.parseInt(jDieTypeTextField.getText()))));
+                int[] sumEA = roll.rollExplodeDie(Integer.parseInt(jDieTypeTextField.getText()));
+                jResultLabel.setText(Arrays.toString(sumEA));
+                jSumLabel.setText("= " + Integer.toString(roll.sumResultsOne(sumEA)));
             }
         }
         else if(jRollTypeComboBox.getSelectedItem().toString().equals("Advantage"))
         {
             if(Integer.parseInt(jDieAmountTextField.getText()) > 1)
             {
-                jResultLabel.setText(Arrays.toString(roll.rollAdvantageDice(Integer.parseInt(jDieTypeTextField.getText()), Integer.parseInt(jDieAmountTextField.getText()))));
+                int[] sumA = roll.rollAdvantageDice(Integer.parseInt(jDieTypeTextField.getText()), Integer.parseInt(jDieAmountTextField.getText()));
+                jResultLabel.setText(Arrays.toString(sumA));
+                jSumLabel.setText("= " + Integer.toString(roll.sumResultsOne(sumA)));
             }
             else
             {
-            jResultLabel.setText(Integer.toString(roll.rollAdvantageDie(Integer.parseInt(jDieTypeTextField.getText()))));
+                int sumAA = roll.rollAdvantageDie(Integer.parseInt(jDieTypeTextField.getText()));
+                jResultLabel.setText(Integer.toString(sumAA));
+                jSumLabel.setText("= " + Integer.toString(sumAA));
             }
         }
         else if(jRollTypeComboBox.getSelectedItem().toString().equals("Disadvantage"))
         {
             if(Integer.parseInt(jDieAmountTextField.getText()) > 1)
             {
-                jResultLabel.setText(Arrays.toString(roll.rollDisadvantageDice(Integer.parseInt(jDieTypeTextField.getText()), Integer.parseInt(jDieAmountTextField.getText()))));
+                int[] sumD2 = roll.rollDisadvantageDice(Integer.parseInt(jDieTypeTextField.getText()), Integer.parseInt(jDieAmountTextField.getText()));
+                jResultLabel.setText(Arrays.toString(sumD2));
+                jSumLabel.setText("= " + Integer.toString(roll.sumResultsOne(sumD2)));
             }
             else
             {
-            jResultLabel.setText(Integer.toString(roll.rollDisadvantageDie(Integer.parseInt(jDieTypeTextField.getText()))));
+                int sumDD = roll.rollDisadvantageDie(Integer.parseInt(jDieTypeTextField.getText()));
+                jResultLabel.setText(Integer.toString(sumDD));
+                jSumLabel.setText("= " + Integer.toString(sumDD));
             }
         }
     }//GEN-LAST:event_jRollButtonActionPerformed
@@ -293,5 +314,6 @@ public class GUI extends javax.swing.JFrame
     private javax.swing.JButton jRollButton;
     private javax.swing.JComboBox<String> jRollTypeComboBox;
     private javax.swing.JLabel jRollTypeLabel;
+    private javax.swing.JLabel jSumLabel;
     // End of variables declaration//GEN-END:variables
 }
