@@ -10,5 +10,5 @@ The roll types it features are:
   
 The GUI is unpolished, default, NetBeans 8.2 JFrame.
 
-I do not currently have any plans to continue this project, beyond a possible summing method.
+I do not currently have any plans to continue this project, save any ideas I might have to fix it.
 Feel free to request features, but do not be disappointed if I do not respond or choose to implement them.
